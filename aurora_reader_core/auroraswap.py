@@ -54,7 +54,7 @@ class Auroraswap:
         """
         pretty pointless part, since we don't need to parse through all
         pools and can just use a hardcoded address for this case.
-        nevertheless, i'm leaving it here intentionally.
+        nevertheless, i'm leaving it here intentionally. 
         """
         for i in range(pool_size):
             pool_info = self.contract.functions.poolInfo(i).call()
