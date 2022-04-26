@@ -71,17 +71,20 @@ class Auroraswap:
             if weth_token_amount > 0 and near_token_amount > 0:
                 staked_lp_token_req = requests.get("https://api.aurorascan.dev/api?module=account&action=" +
                                       f"tokenbalance&contractaddress={WETH_NEAR_LP_TOKEN}" +
-                                      f"&address=0x35CC71888DBb9FfB777337324a4A60fdBAA19DDE&tag=latest&apikey=YourApiKeyToken")
+                                      f"&address=0x35cc71888dbb9ffb777337324a4a60fdbaa19dde&tag=latest&apikey=YourApiKeyToken")
+                total_lp_token_req = requests.get("https://api.aurorascan.dev/api?module=stats&action=tokensupply&" +
+                                                     f"contractaddress={WETH_NEAR_LP_TOKEN}&apikey=YourApiKeyToken")
                 staked_lp_token_amount = float(int(json.loads(staked_lp_token_req.content)["result"]) / 10**18)
-                total_weth_near_lp_value = (near_price * near_token_amount +
-                                            weth_price * weth_token_amount) / 2
-                weekly_apr = brl_per_week * brl_price / total_weth_near_lp_value * 100
+                total_lp_token_amount = float(int(json.loads(total_lp_token_req.content)["result"]) / 10**18)
+                staked_tvl = near_price * near_token_amount + weth_price * weth_token_amount
+                price_per_token = staked_tvl / total_lp_token_amount
+                weekly_apr = ((brl_per_week * brl_price) / (staked_lp_token_amount * price_per_token)) * 100
                 yearly_apr = weekly_apr * 52
                 data_for_api = {
                     "weekly_apr": weekly_apr,
                     "staked_lp_token_amount": staked_lp_token_amount,
-                    "total_weth_near_lp_value": total_weth_near_lp_value,
+                    "staked_tvl": staked_tvl,
                     "yearly_apr": yearly_apr,
-                    "brl_per_week" : brl_per_week
+                    "brl_per_week " : f"{brl_per_week} (${str(brl_per_week * brl_price)})"
                 }
                 return data_for_api
