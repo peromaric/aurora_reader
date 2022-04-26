@@ -1,7 +1,6 @@
 from fastapi_utils.inferring_router import InferringRouter
 from starlette.responses import RedirectResponse
 from aurora_reader_core.auroraswap import Auroraswap
-import random
 
 """
 router with its .get and .post routes below.

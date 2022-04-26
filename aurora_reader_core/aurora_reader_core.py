@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-import aurora_reader_core.router
 from aurora_reader_core.router import router as aurora_router
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
@@ -18,7 +17,6 @@ class AuroraReader:
             allow_credentials=True,
             allow_methods=["*"],
             allow_headers=["*"], )
-
         self._run_uvicorn()
 
 
