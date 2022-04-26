@@ -1,0 +1,8 @@
+eth_account==0.5.7
+fastapi==0.75.2
+fastapi_utils==0.2.1
+pycoingecko==2.2.0
+requests==2.27.1
+starlette==0.17.1
+uvicorn==0.17.6
+web3==5.29.0
