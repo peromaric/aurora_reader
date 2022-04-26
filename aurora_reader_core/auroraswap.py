@@ -22,7 +22,6 @@ class Auroraswap:
 
         self.connect()
         self.import_abi()
-        self.calculate_rewards()
 
     def connect(self):
         print("Connecting to aurora")
@@ -82,6 +81,7 @@ class Auroraswap:
                     "weekly_apr": weekly_apr,
                     "staked_lp_token_amount": staked_lp_token_amount,
                     "total_weth_near_lp_value": total_weth_near_lp_value,
-                    "yearly_apr": yearly_apr
+                    "yearly_apr": yearly_apr,
+                    "brl_per_week" : brl_per_week
                 }
-                return json.dumps(data_for_api)
+                return data_for_api

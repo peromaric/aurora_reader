@@ -15,7 +15,7 @@ router: InferringRouter = InferringRouter()
     summary="Home Page"
 )
 async def home():
-    response: RedirectResponse = RedirectResponse(url="/redoc")  # redirect to interface
+    response: RedirectResponse = RedirectResponse(url="/docs")  # redirect to interface
     return response
 
 
